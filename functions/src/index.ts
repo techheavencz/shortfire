@@ -19,7 +19,13 @@ function parseLinkId(request: express.Request): Promise<string> {
 function obtainTargetUrl(linkId: string): Promise<string> {
   return admin.database().ref(`/shortenedLinks/${linkId}/target`)
     .once('value')
-    .then(snapshot => snapshot.val())
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        return Promise.resolve(snapshot.val());
+      } else {
+        return Promise.reject(`Target '${linkId}' not found`);
+      }
+    })
     .catch(failure => {
       console.error(failure);
       return Promise.reject("invalid_id")
