@@ -38,8 +38,7 @@ function redirectToUrl(url: string, response: express.Response): Promise<void> {
 }
 
 function handleFailure(cause: string, response: express.Response) {
-  response.setHeader('Content-Type', 'application/json');
-  response.send(`{"message": "Unknown error occurred", "cause": "${cause}"}`);
+  response.redirect('/');
 }
 
 export const redirect = functions.https.onRequest((request, response) => {
