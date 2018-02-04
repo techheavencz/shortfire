@@ -11,6 +11,10 @@
     ],
     "rewrites": [
       {
+        "source": "/admin",
+        "destination": "/admin.html"
+      },
+      {
         "source": "**",
         "function": "redirect"
       }

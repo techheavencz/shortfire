@@ -3,6 +3,7 @@
     ".read": false,
     ".write": false,
     "shortenedLinks": {
+      ".read": "auth != null",
       "$linkId": {
         "target": {
           ".read": true
