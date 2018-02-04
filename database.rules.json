@@ -3,11 +3,16 @@
     ".read": false,
     ".write": false,
     "shortenedLinks": {
-      ".read": "auth != null",
+      ".read": "auth != null && root.child('/admins/' + auth.uid).exists()",
       "$linkId": {
         "target": {
           ".read": true
         }
+      }
+    },
+    "admins": {
+      "$uid": {
+        ".read": "auth.uid === $uid"
       }
     }
   }

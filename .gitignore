@@ -5,3 +5,5 @@ functions/node_modules
 functions/lib
 
 firebase-debug.log
+
+public/firebaseConfig.js
