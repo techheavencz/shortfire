@@ -4,6 +4,8 @@ import * as functions from 'firebase-functions'
 import * as express from 'express'
 import * as admin from 'firebase-admin'
 
+admin.initializeApp(functions.config().firebase);
+
 function parseLinkId(request: express.Request): Promise<string> {
   try {
     const linkId = request.path.substr(1);
