@@ -1,6 +1,13 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": false,
+    ".write": false,
+    "shortenedLinks": {
+      "$linkId": {
+        "target": {
+          ".read": true
+        }
+      }
+    }
   }
 }
