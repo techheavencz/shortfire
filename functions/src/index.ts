@@ -5,12 +5,16 @@ import * as express from 'express'
 import * as admin from 'firebase-admin'
 import RedirectHandler from "./RedirectHandler";
 import Api from "./api/Api";
+import * as cookieParser from "cookie-parser";
 
 // Initialize Firebase App
 admin.initializeApp(functions.config().firebase);
 
 // Routing
 const app = express();
+
+// Cookies
+app.use(cookieParser());
 
 // API
 app.use("/api", Api.setup());

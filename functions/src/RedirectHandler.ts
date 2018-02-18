@@ -7,8 +7,11 @@ class RedirectHandler {
 
   static handleRedirect(request: express.Request, response: express.Response) {
     this._instance.parseLinkId(request)
-      .then((linkId) => this._instance.obtainTargetUrl(linkId))
-      .then((targetUrl) => this._instance.redirectToUrl(targetUrl, response))
+      .then((linkId) => {
+        return this._instance.obtainTargetUrl(linkId)
+          .then((targetUrl) => this._instance.redirectToUrl(targetUrl, response))
+          .then(() => this._instance.logRedirect(linkId))
+      })
       .catch((error) => this._instance.handleFailure(error, response));
   }
 
@@ -41,6 +44,19 @@ class RedirectHandler {
   private redirectToUrl(url: string, response: express.Response): Promise<void> {
     response.redirect(url);
     return Promise.resolve()
+  }
+
+  private logRedirect(linkId: string): Promise<void> {
+    return admin.database().ref(`/shortenedLinks/${linkId}/count`)
+      .transaction((value) => {
+        return (value || 0) + 1;
+      })
+      .then((response) => {
+        if (!response.committed) {
+          console.warn('transaction not committed')
+        }
+        return Promise.resolve()
+      })
   }
 
   private handleFailure(cause: string, response: express.Response) {

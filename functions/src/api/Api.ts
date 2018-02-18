@@ -1,10 +1,23 @@
 import * as express from 'express'
-import ManagementApi from "./ManagementApi";
+import ManagementApi from "./management/ManagementApi";
+import authorizeRequest from "./auth/FirebaseAuth";
+import {respondFailure} from "./util/ApiResponse";
+import * as bodyParser from "body-parser";
+import * as cors from "cors";
 
 class Api {
 
   setup(): express.Router {
     const apiRouter = express.Router();
+
+    // CORS headers
+    apiRouter.use(cors({origin: true}));
+
+    // Authorization
+    apiRouter.use(authorizeRequest);
+
+    // Parse incoming body
+    apiRouter.use(bodyParser.json());
 
     // Setup API
     apiRouter.use('/v1', this.setupV1());
@@ -25,11 +38,7 @@ class Api {
   }
 
   private rejectInvalidRequest(request: express.Request, response: express.Response) {
-    response.setHeader('Content-Type', 'application/json');
-    response.send({
-      status: 500,
-      message: 'Invalid request'
-    })
+    respondFailure(response, 404, 'Not found');
   }
 
 }

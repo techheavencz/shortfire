@@ -2,7 +2,14 @@
   "name": "functions",
   "description": "TypeScript sample Cloud Functions for Firebase",
   "dependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/cors": "^2.8.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "latest",
+    "cors": "latest",
     "express": "^4.16.2",
+    "express-validator": "^5.0.1",
     "firebase-admin": "~5.5.0",
     "firebase-functions": "^0.8.1"
   },

@@ -1,6 +1,6 @@
 import * as express from 'express'
-import EndpointGroup from "./EndpointGroup";
-import UrlEndpoint from "./management/UrlEndpoint";
+import EndpointGroup from "../EndpointGroup";
+import UrlEndpoint from "./UrlEndpoint";
 
 class ManagementApi implements EndpointGroup {
 
@@ -8,7 +8,7 @@ class ManagementApi implements EndpointGroup {
     const apiRouter = express.Router();
 
     // URL endpoint
-    apiRouter.post('/url.json', UrlEndpoint.handler);
+    new UrlEndpoint().register(apiRouter);
 
     return apiRouter;
   }

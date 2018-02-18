@@ -1,7 +1,7 @@
 import * as express from 'express'
 
 interface Endpoint {
-  handler(request: express.Request, response: express.Response)
+  register(router: express.Router)
 }
 
 export default Endpoint
