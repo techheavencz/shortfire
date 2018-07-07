@@ -82,3 +82,75 @@ h2, h3 {
     text-transform: uppercase;
     cursor: pointer;
 }
+
+#UrlList {
+    width: 100%;
+}
+
+#UrlList-List {
+    width: 100%;
+}
+
+.UrlList-ListItem {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.UrlList-ListItem-LeftPart {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.UrlList-ListItem-RightPart {
+    display: flex;
+    flex-basis: 0;
+    flex-shrink: 0;
+}
+
+.UrlList-ListItem-Name {
+    font-size: 24px;
+    color: #222222;
+    text-transform: lowercase;
+}
+
+.UrlList-ListItem-Target {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.UrlList-ListItem-Target a {
+    color: #555;
+    font-weight: 200;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+}
+
+.UrlList-ListItem-Actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: 16px;
+}
+
+.UrlList-ListItem-Action {
+    cursor: pointer;
+}
+
+.UrlList-ListItem-Action:not(:last-child) {
+    margin: 0 24px 0 0;
+}
+
+.UrlList-ListItem-Count {
+    font-size: 24px;
+}

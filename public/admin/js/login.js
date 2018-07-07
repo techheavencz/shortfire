@@ -6,9 +6,11 @@ function updateAuthorizedState(user) {
 
     checkAdminState(user.uid)
       .then(function () {
-        updateUser(user)
+        updateUser(user);
       })
-      .catch(handleInvalidUser)
+      .catch(function (reason) {
+        handleInvalidUser(user);
+      })
   } else {
     console.log('user signed out');
 
@@ -18,16 +20,14 @@ function updateAuthorizedState(user) {
 }
 
 function updateUser(user) {
-  console.log('admin user', user);
-
   window._adminUser = user;
   window._updateAdminUi();
 
   return Promise.resolve();
 }
 
-function handleInvalidUser() {
-  console.warn('invalid user!!!');
+function handleInvalidUser(user) {
+  console.warn('invalid user!!!', user);
 
   alert('User account not admin!');
   firebase.auth().signOut();
@@ -47,12 +47,19 @@ function checkAdminState(uid) {
 
 // Listen for auth state changes
 firebase.auth().onAuthStateChanged(function (user) {
-  updateAuthorizedState(user != null ? {
-    uid: user.uid,
-    name: user.displayName,
-    email: user.email,
-    photoUrl: user.photoURL
-  } : null)
+  user.getIdToken()
+    .then((idToken) => {
+      updateAuthorizedState(user != null ? {
+        uid: user.uid,
+        name: user.displayName,
+        email: user.email,
+        photoUrl: user.photoURL,
+        token: idToken
+      } : null)
+    })
+    .catch((err) => {
+      console.warn(err);
+    });
 });
 
 // Setup Google Login

@@ -6,4 +6,4 @@ functions/lib
 
 firebase-debug.log
 
-public/firebaseConfig.js
+public/admin/firebaseConfig.js
