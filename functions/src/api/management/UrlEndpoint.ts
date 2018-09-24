@@ -7,9 +7,9 @@ import {respondFailure, respondWith} from "../util/ApiResponse";
 class UrlEndpoint implements Endpoint {
 
     register(router: express.Router) {
-        router.put('/url.json', UrlEndpoint.validatePutRequest(), this.handlePutRequest);
-        router.delete('/url.json', UrlEndpoint.validateDeleteRequest(), this.handleDeleteRequest);
-        router.get('/url.json', this.handleGetRequest);
+        router.put('/url', UrlEndpoint.validatePutRequest(), this.handlePutRequest);
+        router.delete('/url/:shortName', UrlEndpoint.validateDeleteRequest(), this.handleDeleteRequest);
+        router.get('/url/:shortName', this.handleGetRequest);
     }
 
     private static validatePutRequest() {
@@ -77,8 +77,12 @@ class UrlEndpoint implements Endpoint {
     private static validateDeleteRequest() {
         return checkSchema({
             shortName: {
-                in: "body",
-                errorMessage: "Missing/invalid field 'shortName"
+                in: ["params"],
+                errorMessage: "Missing/invalid field 'shortName'",
+                isLowercase: true,
+                matches: {
+                    options: /^[a-z0-9_\-]+$/g
+                }
             }
         })
     }
@@ -91,15 +95,15 @@ class UrlEndpoint implements Endpoint {
             return;
         }
 
-        const shortName = req.body.shortName;
+        const shortName = req.params.shortName;
 
         const db = admin.database();
         const linkRef = db.ref(`/shortenedLinks/${shortName}`);
 
         linkRef
             .once('value')
-            .then((ref) => {
-                if (ref.exists()) {
+            .then((snapshot) => {
+                if (snapshot.exists()) {
                     return Promise.resolve();
                 } else {
                     return Promise.reject({

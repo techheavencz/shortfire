@@ -7,3 +7,4 @@ functions/lib
 firebase-debug.log
 
 public/admin/firebaseConfig.js
+\.firebase/

@@ -55,7 +55,7 @@
   }
 
   function createNewLink(shortString, targetUrl) {
-    fetch('/api/v1/manage/url.json', {
+    fetch('/api/v1/manage/url', {
       method: 'PUT',
       body: JSON.stringify({
         shortName: shortString,
@@ -76,13 +76,9 @@
   }
 
   function deleteLink(shortString) {
-    fetch('/api/v1/manage/url.json', {
+    fetch(`/api/v1/manage/url/${shortString}`, {
       method: 'DELETE',
-      body: JSON.stringify({
-        shortName: shortString
-      }),
       headers: {
-        'Content-Type': 'application/json',
         "Authorization": `Bearer ${userToken}`
       }
     })
