@@ -4,31 +4,44 @@
     <meta charset="UTF-8">
     <title>ShortFire[Admin]</title>
 
-    <link rel="stylesheet" href="/styles/common.css">
+    <link rel="stylesheet" href="../styles/common.css">
     <link rel="stylesheet" href="styles/admin.css">
   </head>
   <body>
-    <h1>ShortFire - [Admin]</h1>
-    <div id="Login">
-      <button id="Login-Button">Login with Google</button>
+    <div class="Screen-Overlay" id="Screen-Overlay">
+      <div class="Progress sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
     </div>
-    <div id="App">
-      <div id="Info">
-        <h3>User '<span id="InfoUser"></span>'</h3>
-      </div>
-      <div class="Divider"></div>
-      <div id="NewUrl">
-        <h3>New URL</h3>
-        <div class="NewUrl-Field">
-          <input type="url" id="ShortenUrlField" placeholder="https://your.long.url">
-          <input type="text" id="ShortenAsField" placeholder="short">
-          <button id="NewUrl-ShortenButton">Shorten</button>
-        </div>
-      </div>
-      <div id="UrlList">
-        <h3>Existing URLs</h3>
-        <div id="UrlList-List">
 
+    <div class="Screen-Main">
+      <div class="Content-Wrapper">
+        <h1>ShortFire - [Admin]</h1>
+        <div id="Login">
+          <button id="Login-Button">Login with Google</button>
+        </div>
+        <div id="App">
+          <div id="Info">
+            <h3>User '<span id="InfoUser"></span>'</h3>
+          </div>
+          <div class="Divider"></div>
+          <div id="NewUrl">
+            <h3>New URL</h3>
+            <div class="NewUrl-Field">
+              <input type="url" id="ShortenUrlField" placeholder="https://your.long.url">
+              <input type="text" id="ShortenAsField" placeholder="short">
+              <button id="NewUrl-ShortenButton">Shorten</button>
+            </div>
+          </div>
+          <div id="UrlList">
+            <h3>Existing URLs</h3>
+            <div id="UrlList-List">
+
+            </div>
+          </div>
         </div>
       </div>
     </div>

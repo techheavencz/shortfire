@@ -2,6 +2,8 @@
   const AppElement = document.getElementById("App");
   const LoginElement = document.getElementById("Login");
 
+  const ScreenOverlayElement = document.getElementById("Screen-Overlay");
+
   const UserInfoElement = document.getElementById("InfoUser");
 
   const ShortenUrlField = document.getElementById("ShortenUrlField");
@@ -24,6 +26,9 @@
       userToken = user.token;
 
       UserInfoElement.innerText = user.name;
+
+      // Observe URLs
+      observeExistingUrls();
     }
   };
 
@@ -33,9 +38,6 @@
 
     // Handle shorten url button
     setupShortenButton();
-
-    // Observe URLs
-    observeExistingUrls();
   }
 
   function setupLoginButton() {
@@ -55,8 +57,11 @@
   }
 
   function createNewLink(shortString, targetUrl) {
+    ScreenOverlayElement.style.display = '';
+
     fetch('/api/v1/manage/url', {
       method: 'PUT',
+      mode: 'cors',
       body: JSON.stringify({
         shortName: shortString,
         targetUrl: targetUrl
@@ -66,28 +71,52 @@
         "Authorization": `Bearer ${userToken}`
       }
     })
-      .then((response) => response.json())
       .then((response) => {
-        console.log('response', response)
+        console.log('response', response);
+
+        ShortenUrlField.value = "";
+        ShortenAsField.value = "";
+
+        if (response.status !== 200) {
+          alert('You failed!!!')
+
+          ScreenOverlayElement.style.display = 'none';
+        }
       })
       .catch(function (reason) {
         console.warn('error', reason)
+        alert("Error happened!")
+
+        ScreenOverlayElement.style.display = 'none';
       })
   }
 
   function deleteLink(shortString) {
+    console.log('deleteLink()');
+
+    ScreenOverlayElement.style.display = '';
+
     fetch(`/api/v1/manage/url/${shortString}`, {
       method: 'DELETE',
+      mode: 'cors',
       headers: {
         "Authorization": `Bearer ${userToken}`
       }
     })
-      .then((response) => response.json())
       .then((response) => {
         console.log('response', response)
+
+        if (response.status !== 200) {
+          alert('You failed!!!')
+
+          ScreenOverlayElement.style.display = 'none';
+        }
       })
       .catch(function (reason) {
         console.warn('error', reason)
+        alert("Error happened!")
+
+        ScreenOverlayElement.style.display = 'none';
       })
   }
 
@@ -102,6 +131,8 @@
           });
 
         updateExistingUrls(list);
+
+        ScreenOverlayElement.style.display = 'none';
       })
   }
 

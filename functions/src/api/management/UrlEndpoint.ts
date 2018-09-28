@@ -24,7 +24,7 @@ class UrlEndpoint implements Endpoint {
                 errorMessage: "Missing/invalid field",
                 isLength: {
                     options: {
-                        min: 3,
+                        min: 1,
                         max: undefined
                     }
                 },
