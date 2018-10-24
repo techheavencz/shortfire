@@ -12,10 +12,20 @@
 
   const UrlList = document.getElementById("UrlList-List");
 
+  function showOverlay() {
+    ScreenOverlayElement.style.display = 'flex'
+  }
+
+  function hideOverlay() {
+    ScreenOverlayElement.style.display = 'none'
+  }
+
   let userToken = null;
 
   window._updateAdminUi = function () {
     const userLoggedIn = window._adminUser !== undefined && window._adminUser !== null;
+
+    console.log("_updateAdminUi", "userLoggedIn = " + userLoggedIn);
 
     AppElement.style.visibility = userLoggedIn ? 'visible' : 'hidden';
     LoginElement.style.visibility = userLoggedIn ? 'hidden' : 'visible';
@@ -29,6 +39,8 @@
 
       // Observe URLs
       observeExistingUrls();
+    } else {
+      hideOverlay()
     }
   };
 
@@ -57,7 +69,7 @@
   }
 
   function createNewLink(shortString, targetUrl) {
-    ScreenOverlayElement.style.display = '';
+    showOverlay();
 
     fetch('/api/v1/manage/url', {
       method: 'PUT',
@@ -78,23 +90,23 @@
         ShortenAsField.value = "";
 
         if (response.status !== 200) {
-          alert('You failed!!!')
+          alert('You failed!!!');
 
-          ScreenOverlayElement.style.display = 'none';
+          hideOverlay();
         }
       })
       .catch(function (reason) {
         console.warn('error', reason)
         alert("Error happened!")
 
-        ScreenOverlayElement.style.display = 'none';
+        hideOverlay();
       })
   }
 
   function deleteLink(shortString) {
     console.log('deleteLink()');
 
-    ScreenOverlayElement.style.display = '';
+    showOverlay();
 
     fetch(`/api/v1/manage/url/${shortString}`, {
       method: 'DELETE',
@@ -109,14 +121,14 @@
         if (response.status !== 200) {
           alert('You failed!!!')
 
-          ScreenOverlayElement.style.display = 'none';
+          hideOverlay();
         }
       })
       .catch(function (reason) {
         console.warn('error', reason)
         alert("Error happened!")
 
-        ScreenOverlayElement.style.display = 'none';
+        hideOverlay();
       })
   }
 
@@ -132,7 +144,7 @@
 
         updateExistingUrls(list);
 
-        ScreenOverlayElement.style.display = 'none';
+        hideOverlay();
       })
   }
 

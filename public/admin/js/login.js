@@ -47,19 +47,23 @@ function checkAdminState(uid) {
 
 // Listen for auth state changes
 firebase.auth().onAuthStateChanged(function (user) {
-  user.getIdToken()
-    .then((idToken) => {
-      updateAuthorizedState(user != null ? {
-        uid: user.uid,
-        name: user.displayName,
-        email: user.email,
-        photoUrl: user.photoURL,
-        token: idToken
-      } : null)
-    })
-    .catch((err) => {
-      console.warn(err);
-    });
+  if (user !== null) {
+    user.getIdToken()
+      .then((idToken) => {
+        updateAuthorizedState(user != null ? {
+          uid: user.uid,
+          name: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL,
+          token: idToken
+        } : null)
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
+  } else {
+    updateAuthorizedState(null)
+  }
 });
 
 // Setup Google Login
