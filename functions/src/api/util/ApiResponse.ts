@@ -1,6 +1,6 @@
-import * as express from 'express'
+import express from 'express'
 
-function respondWith(res: express.Response, body: any) {
+function respondWith(res: express.Response, body: unknown) {
     res.status(200);
     res.set('content-type', 'application/json');
     if (body !== undefined && body !== null) {
@@ -10,7 +10,7 @@ function respondWith(res: express.Response, body: any) {
     }
 }
 
-function respondFailure(res: express.Response, status: number, message: string, errors: any = null) {
+function respondFailure(res: express.Response, status: number, message: string, errors: unknown = null) {
     res.status(status);
     res.json({
         status: status,

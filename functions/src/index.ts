@@ -1,11 +1,9 @@
-'use strict';
-
-import * as functions from 'firebase-functions'
-import * as express from 'express'
-import * as admin from 'firebase-admin'
+import functions from 'firebase-functions'
+import express from 'express'
+import admin from 'firebase-admin'
 import RedirectHandler from "./RedirectHandler";
 import Api from "./api/Api";
-import * as cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 
 // Initialize Firebase App
 admin.initializeApp(functions.config().firebase);
