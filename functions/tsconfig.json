@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
-    "lib": ["es6"],
+    "lib": ["es6", "es2018", "es2017", "es2016"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "outDir": "lib",
     "sourceMap": true,
-    "target": "es6"
+    "target": "es6",
+	"alwaysStrict": true,
+	"esModuleInterop": true,
+	"allowJs": true,
+	"checkJs": false
   },
   "compileOnSave": true,
   "include": [
     "src"
+  ],
+  "exclude": [
+	"node_modules"
   ]
+
 }
