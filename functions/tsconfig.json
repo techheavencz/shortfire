@@ -8,6 +8,7 @@
     "target": "es6",
 	"alwaysStrict": true,
 	"esModuleInterop": true,
+	"allowSyntheticDefaultImports": true,
 	"allowJs": true,
 	"checkJs": false
   },

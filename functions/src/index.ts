@@ -1,12 +1,15 @@
-import functions from 'firebase-functions'
+import * as functions from 'firebase-functions'
 import express from 'express'
 import admin from 'firebase-admin'
 import RedirectHandler from "./RedirectHandler";
 import Api from "./api/Api";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 // Initialize Firebase App
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 // Routing
 const app = express();
@@ -27,4 +30,4 @@ app.all("*", ((req, res) => {
   res.status(500);
 }));
 
-export const redirect = functions.https.onRequest(app);
+exports.redirect = functions.https.onRequest(app);
