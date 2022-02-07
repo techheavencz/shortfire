@@ -48,11 +48,12 @@
 
     <!-- Firebase -->
 
-    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
     <script src="firebaseConfig.js"></script>
     <script>
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+		firebase.auth().useEmulator("http://localhost:9099");
     </script>
     <script src="js/admin.js"></script>
     <script src="js/login.js"></script>
