@@ -4,9 +4,6 @@ import admin from 'firebase-admin'
 import RedirectHandler from "./RedirectHandler";
 import Api from "./api/Api";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv"
-
-dotenv.config()
 
 // Initialize Firebase App
 admin.initializeApp();
