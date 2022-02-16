@@ -1,5 +1,5 @@
-import * as admin from "firebase-admin";
-import * as express from "express";
+import admin from "firebase-admin";
+import express from "express";
 
 class RedirectHandler {
 

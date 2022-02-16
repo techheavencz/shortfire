@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 
 interface Endpoint {
   register(router: express.Router)

@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 
 interface EndpointGroup {
   setup(): express.Router

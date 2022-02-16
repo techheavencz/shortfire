@@ -1,7 +1,7 @@
 import Endpoint from "../Endpoint";
-import * as express from 'express'
-import {checkSchema, validationResult} from "express-validator/check";
-import * as admin from "firebase-admin";
+import express from 'express'
+import {checkSchema, validationResult} from "express-validator";
+import admin from "firebase-admin";
 import {respondFailure, respondWith} from "../util/ApiResponse";
 
 class UrlEndpoint implements Endpoint {
@@ -124,7 +124,7 @@ class UrlEndpoint implements Endpoint {
             })
     }
 
-    private handleGetRequest(req: express.Request, res: express.Response) {
+    private handleGetRequest(_req: express.Request, _res: express.Response) {
         // todo
     }
 

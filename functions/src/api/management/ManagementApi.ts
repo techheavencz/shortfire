@@ -1,4 +1,4 @@
-import * as express from 'express'
+import express from 'express'
 import EndpointGroup from "../EndpointGroup";
 import UrlEndpoint from "./UrlEndpoint";
 

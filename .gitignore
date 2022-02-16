@@ -8,3 +8,7 @@ firebase-debug.log
 
 public/admin/firebaseConfig.js
 \.firebase/
+
+
+**/.env.local
+**/*.log

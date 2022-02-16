@@ -2,24 +2,28 @@
   "name": "functions",
   "description": "TypeScript sample Cloud Functions for Firebase",
   "dependencies": {
-    "@types/body-parser": "^1.16.8",
-    "@types/cookie-parser": "^1.4.1",
-    "@types/cors": "^2.8.3",
-    "body-parser": "^1.18.2",
+    "@types/body-parser": "^1.19.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
+    "body-parser": "^1.19.1",
     "cookie-parser": "latest",
     "cors": "latest",
-    "express": "^4.16.2",
-    "express-validator": "^5.0.1",
-    "firebase-admin": "~5.5.0",
-    "firebase-functions": "^0.8.1"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "firebase-admin": "~10.0.2",
+    "firebase-functions": "^3.16.0"
   },
   "devDependencies": {
-    "@types/express": "^4.0.37",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "@types/express": "^4.17.13",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "eslint": "^8.8.0",
+    "typescript": "^4.5.5"
   },
   "scripts": {
-    "build": "./node_modules/.bin/tslint -p tslint.json && ./node_modules/.bin/tsc",
+    "lint": "eslint --fix --ext .ts,.js .",
+    "build": "yarn lint && tsc",
     "serve": "yarn run build && firebase serve --only functions",
     "shell": "yarn run build && firebase experimental:functions:shell",
     "start": "yarn run shell",
@@ -27,5 +31,8 @@
     "logs": "firebase functions:log"
   },
   "main": "lib/index.js",
+  "engines": {
+    "node": "16"
+  },
   "private": true
 }

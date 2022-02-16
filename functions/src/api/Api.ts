@@ -1,9 +1,9 @@
-import * as express from 'express'
+import express from 'express'
 import ManagementApi from "./management/ManagementApi";
 import authorizeRequest from "./auth/FirebaseAuth";
 import {respondFailure} from "./util/ApiResponse";
-import * as bodyParser from "body-parser";
-import * as cors from "cors";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 class Api {
 

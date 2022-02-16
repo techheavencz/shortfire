@@ -1,4 +1,4 @@
-import * as admin from 'firebase-admin'
+import admin from 'firebase-admin'
 import {respondFailure} from "../util/ApiResponse";
 
 function checkIsAdmin(uid: string) {
